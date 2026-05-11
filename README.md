@@ -14,7 +14,7 @@ The calculator will show the following prompts:
 - $ - stack error occurred
 - ! - numeric overflow or underflow
 ### How to Use
-At the beginning of hte program, the calculator will display a title nad a short series of subheadings to describe how to use it.
+At the beginning of the program, the calculator will display a title nad a short series of subheadings to describe how to use it.
 ```
 SMC RPN Calculator
 Enter 0-9 or +, -, *, /, or . to display result on TOS.
