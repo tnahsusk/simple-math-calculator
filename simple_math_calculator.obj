@@ -1,0 +1,230 @@
+LC-3 OBJ FILE
+
+.TEXT
+3000
+115
+E810
+E017
+F022
+E029
+F022
+E060
+F022
+F020
+E069
+F021
+F025
+????
+002A
+002B
+002D
+002F
+002E
+????
+????
+????
+????
+????
+????
+????
+????
+0053
+004D
+0043
+0020
+0052
+0050
+004E
+0020
+0043
+0061
+006C
+0063
+0075
+006C
+0061
+0074
+006F
+0072
+000A
+0000
+0045
+006E
+0074
+0065
+0072
+0020
+0030
+002D
+0039
+0020
+006F
+0072
+0020
+002B
+002C
+0020
+002D
+002C
+0020
+002A
+002C
+0020
+002F
+002C
+0020
+006F
+0072
+0020
+002E
+0020
+0074
+006F
+0020
+0064
+0069
+0073
+0070
+006C
+0061
+0079
+0020
+0072
+0065
+0073
+0075
+006C
+0074
+0020
+006F
+006E
+0020
+0054
+004F
+0053
+002E
+000A
+0000
+003E
+0020
+0000
+003F
+0020
+0000
+0024
+0020
+0000
+0021
+0020
+0000
+000A
+
+.SYMBOL
+ADDR | EXT | LABEL
+3000 |   0 | START
+3005 |   0 | LOOP
+300B |   0 | RESULT
+300C |   0 | MULT
+300D |   0 | PLUS
+300E |   0 | MINUS
+300F |   0 | DIVIDE
+3010 |   0 | TOS
+3011 |   0 | COUNT
+3019 |   0 | MSG1
+302D |   0 | MSG2
+3066 |   0 | NEWNUM
+3069 |   0 | INPUTERROR
+306C |   0 | STACKERROR
+306F |   0 | FLOWERROR
+3072 |   0 | NEWLINE
+
+.LINKER_INFO
+
+.DEBUG
+# DEBUG SYMBOLS FOR LC3TOOLS
+
+LABEL      | INDEX
+START      |  1227
+LOOP       |  1338
+RESULT     |  1473
+MULT       |  1493
+PLUS       |  1515
+MINUS      |  1537
+DIVIDE     |  1559
+TOS        |  1581
+COUNT      |  1603
+MSG1       |  1625
+MSG2       |  1669
+NEWNUM     |  1750
+INPUTERROR |  1776
+STACKERROR |  1802
+FLOWERROR  |  1828
+NEWLINE    |  1854
+====================
+LINE | ADDR | SOURCE
+   0 | ???? | ; Simple Math Calculator\n
+   1 | ???? | ; LC3-Based Reverse Polish Notation (RPN) Calculator\n
+   2 | ???? | \n
+   3 | ???? | ; Usage:\n
+   4 | ???? | ; Enter a number 0-9, or an operator +, -, *, or /\n
+   5 | ???? | ; Calculator will use Reverse Polish Notation to calculate\n
+   6 | ???? | ; If there is only one number on stack, operation will fail\n
+   7 | ???? | ; and program will terminate. It will accept up to 4 digits.\n
+   8 | ???? | ; \".\" will copy the top of the RPN stack into result and terminate\n
+   9 | ???? | ; If stack is empty, operation will fail and program will reset to the beginning\n
+  10 | ???? | \n
+  11 | ???? | ; Algorithm\n
+  12 | ???? | ; 1. Initialize RPN stack and test values 0, 9, +, -, *, /, and . \n
+  13 | ???? | ; 2. Print title and instructions\n
+  14 | ???? | ; 3. Read character from keyboard\n
+  15 | ???? | ; 4. If operator, load operator vector, check stack for two numbers \n
+  16 | ???? | ; 5. If so, execute operator vector and push result on stack, if not, error\n
+  17 | ???? | ; 6. If number, push number onto stack\n
+  18 | ???? | ; 7. If \".\", check if stack is empty, if not copy TOS to result, if so, error\n
+  19 | ???? | ; 8. Loop back to 3\n
+  20 | ???? | \n
+  21 | ???? | ; Registers:\n
+  22 | ???? | ; R0 - primary register for operations\n
+  23 | ???? | ; R1 - temp register\n
+  24 | ???? | ; R2 - temp register\n
+  25 | ???? | ; R3 - operator vector for JSRR\n
+  26 | ???? | ; R4 - RPN stack pointer\n
+  27 | ???? | \n
+  28 | ???? | ; Prompts:\n
+  29 | ???? | ;   > - ready to accept a new number\n
+  30 | ???? | ;   ? - error occured, input doens\'t make sense\n
+  31 | ???? | ;   $ - stack error occurred\n
+  32 | ???? | ;   ! - numeric overflow or underflow\n
+  33 | ???? | \n
+  34 | ???? | \n
+  35 | ???? | .orig x3000\n
+  36 | 3000 | START       lea R4, count\n
+  37 | 3001 |             lea R0, MSG1\n
+  38 | 3002 |             puts\n
+  39 | 3003 |             lea R0, MSG2\n
+  40 | 3004 |             puts\n
+  41 | ???? | \n
+  42 | 3005 | LOOP        lea R0, NEWNUM\n
+  43 | 3006 |             puts\n
+  44 | 3007 |             getc\n
+  45 | 3008 |             lea R0, NEWLINE\n
+  46 | 3009 |             out\n
+  47 | 300A |             halt\n
+  48 | ???? |             \n
+  49 | 300B | result      .blkw 1\n
+  50 | 300C | MULT        .fill x2A\n
+  51 | 300D | PLUS        .fill x2B\n
+  52 | 300E | MINUS       .fill x2D\n
+  53 | 300F | DIVIDE      .fill x2F\n
+  54 | 3010 | TOS         .fill x2E\n
+  55 | 3011 | count       .blkw #8\n
+  56 | ???? | \n
+  57 | 3019 | MSG1        .stringz \"SMC RPN Calculator\\n\"\n
+  58 | 302D | MSG2        .stringz \"Enter 0-9 or +, -, *, /, or . to display result on TOS.\\n\"\n
+  59 | 3066 | NEWNUM      .stringz \"> \"\n
+  60 | 3069 | INPUTERROR  .stringz \"? \"\n
+  61 | 306C | STACKERROR  .stringz \"$ \"\n
+  62 | 306F | FLOWERROR   .stringz \"! \"\n
+  63 | 3072 | NEWLINE     .fill xA\n
+  64 | ???? | .end
+====================
