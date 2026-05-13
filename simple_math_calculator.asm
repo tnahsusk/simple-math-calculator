@@ -74,6 +74,7 @@ D_LOOP      not R3, R2          ; Negating R2 into R3
 
 PUSH        add R4, R4, #-1     ; Decrementing the Stack
             str R0, R4, #0      ; Storing the New Number into the Stack
+            brnzp LOOP
             
 START       ld R4, STACK_TOP    ; RPN Stack Pointer Address
             lea R0, MSG1        ; Printing Title and Instruction
@@ -86,6 +87,7 @@ START       ld R4, STACK_TOP    ; RPN Stack Pointer Address
 LOOP        lea R0, NEW_NUM      ; Asking for a New Number/Operator
             puts
             getc
+            out
             add R1, R0, #0      ; Transferring the new number to R1
             ld R0, NEWLINE
             out
@@ -103,7 +105,7 @@ LOOP        lea R0, NEW_NUM      ; Asking for a New Number/Operator
             add R2, R0, R1      ; Since we checked the lower bound, anything less than ASCII 0 will be either a valid operator or ","
             brn CHECK_OP
             add R2, R2, #-9     ; If R2 is negative, that means the input is not a valid input (decimal value is too large)
-            brn ERROR
+            brp ERROR
             
             ld R1, ASCII_0      ; Resetting R1 to ASCII 0 and turning it to its negative decimal value
             not R1, R1
@@ -152,23 +154,26 @@ CHECK_OP    ld R1, STACK_TOP   ; Checks if the Stack has 2 Available Numbers to 
             
             brnzp ERROR         ; Input is "," which is an disallowed input
 
-DONE        ldr R0, R4, #0
-            st R0, result
+DONE        ldr R0, R4, #0      ; Takes the current value in R4
+            st R0, result       ; Stores it into result
+            ld R1, ASCII_0      ; Loades in ASCII_0 to convert R0 to ASCII
+            add R0, R0, R1
+            out                 ; Prints out the ASCII of whatever number is R0
             brnzp EXIT
 
-ERROR       ld R0, INPUT_ERROR  ; Input Error
+ERROR       lea R0, INPUT_ERROR ; Input Error
             puts
             ld R0, NEWLINE
             out
             brnzp START         ; Restarting Program
             
-S_ERROR     ld R0, STACK_ERROR  ; Stack Error
+S_ERROR     lea R0, STACK_ERROR ; Stack Error
             puts
             ld R0, NEWLINE
             out
             brnzp START         ; Restarting Program
 
-F_ERROR     ld R0, FLOW_ERROR   ; Numeric Overflow or Underflow
+F_ERROR     lea R0, FLOW_ERROR  ; Numeric Overflow or Underflow
             puts
             ld R0, NEWLINE
             out
