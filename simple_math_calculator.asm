@@ -23,8 +23,9 @@
 ; R0 - primary register for operations
 ; R1 - temp register
 ; R2 - temp register
-; R3 - operator vector for JSRR
+; R3 - temp register
 ; R4 - RPN stack pointer
+; R7 - stores return addresses for JSR calls
 
 ; Prompts:
 ;   > - ready to accept a new number
@@ -34,7 +35,47 @@
 
 
 .orig x3000
-START       lea R4, count       ; RPN Stack Pointer Address
+            brnzp START
+            
+POP2        ldr R2, R4, #0      ; Retrieving the Last Number in the Stack
+            add R4, R4, #1      ; Incrementing the Stack
+            ldr R1, R4, #0      ; Retrieving the Next Last Number in the Stack
+            add R4, R4, #1      ; Incrementing the Stack
+            ret
+
+ADDITION    jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack
+            add R0, R1, R2      ; Adding 2 Most Recent Numbers in the Stack
+            brnzp PUSH          ; Putting the new Number into the Stack
+            
+SUBTRACTION jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack
+            not R2, R2          ; Negating R2
+            add R2, R2, #1
+            add R0, R2, R1      ; Adding R1 and the Negation of R2
+            brnzp PUSH          ; Putting the new Number into the Stack
+            
+MULTIPLY    jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack
+            and R0, R0, #0      ; Sum of Repeated Addition to find the Product of R1 and R2
+M_LOOP      add R2, R2, #0      ; Checking if R2 is at zero to end the loop
+            brz PUSH            ; Putting the new Number into the Stack
+            add R0, R0, R1      ; Repeated Addition
+            add R2, R2, #-1     ; Decrementing R2 until it is 0
+            brnzp M_LOOP        
+
+DIVISION    jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack
+            add R3, R2, #0      ; Checking if R2 is 0
+            brz ERROR           ; If R2 is 0, then Division by 0 which is an Error
+            and R0, R0, #0      ; Counter of the amount of times R2 subtracts into R1
+D_LOOP      not R3, R2          ; Negating R2 into R3
+            add R3, R3, #1
+            add R1, R1, R3      ; Addition of R1 and Negation of R3
+            brn PUSH            ; If R1 is not negative yet, the loop repeats, otherwise puts the new Number into the Stack
+            add R0, R0, #1      ; Incrementing R1
+            brnzp D_LOOP
+
+PUSH        add R4, R4, #-1     ; Decrementing the Stack
+            str R0, R4, #0      ; Storing the New Number into the Stack
+            
+START       ld R4, STACK_TOP    ; RPN Stack Pointer Address
             lea R0, MSG1        ; Printing Title and Instruction
             puts
             lea R0, MSG2
@@ -42,11 +83,13 @@ START       lea R4, count       ; RPN Stack Pointer Address
             lea R0, MSG3
             puts
 
-LOOP        lea R0, NEWNUM      ; Asking for a New Number/Operator
+LOOP        lea R0, NEW_NUM      ; Asking for a New Number/Operator
             puts
             getc
-            lea R0, NEWLINE
+            add R1, R0, #0      ; Transferring the new number to R1
+            ld R0, NEWLINE
             out
+            add R0, R1, #0      ; Transferring the number back to R0
             
             ld R1, MULT         ; Setting R1 to "*" and turning it to its negative decimal value
             not R1, R1
@@ -66,10 +109,72 @@ LOOP        lea R0, NEWNUM      ; Asking for a New Number/Operator
             not R1, R1
             add R1, R1, #1
             add R0, R0, R1      ; Converting the ASCII digit to an integer
+            add R4, R4, #-1     ; Decrementing the R4 and repeating the Loop until CHECK_OP notices a "." or an error occurs
             str R0, R4, #0      ; Storing the integer in R4 (RPN Stack Pointer)
-            add R4, R4, #1      ; Incrementing the R4 and repeating the Loop until CHECK_OP notices a "." or an error occurs
             brnzp LOOP
-            halt
+            
+CHECK_OP    ld R1, STACK_TOP   ; Checks if the Stack has 2 Available Numbers to use for the Operation
+            not R2, R4
+            add R2, R2, #1
+            add R3, R1, R2      ; Finds the Amount of Numbers in the Stack
+            add R3, R3, #2      ; Finds the Remaining Amount of Numbers in the Stack after taking 2
+            brn S_ERROR
+            
+            ld R1, MULT         ; Checking if the Operator is the Multiplication Symbol
+            not R1, R1
+            add R1, R1, #1
+            add R2, R0, R1
+            brz MULTIPLY
+            
+            ld R1, PLUS         ; Checking if the Operator is the Addition Symbol
+            not R1, R1
+            add R1, R1, #1
+            add R2, R0, R1
+            brz ADDITION
+            
+            ld R1, MINUS        ; Checking if the Operator is the Subtraction Symbol
+            not R1, R1
+            add R1, R1, #1
+            add R2, R0, R1
+            brz SUBTRACTION
+            
+            ld R1, DIVIDE       ; Checking if the Operator is the Division Symbol
+            not R1, R1
+            add R1, R1, #1
+            add R2, R0, R1
+            brz DIVISION
+            
+            ld R1, TOS          ; Checking if the Operator is "."
+            not R1, R1
+            add R1, R1, #1
+            add R2, R0, R1
+            brz DONE
+            
+            brnzp ERROR         ; Input is "," which is an disallowed input
+
+DONE        ldr R0, R4, #0
+            st R0, result
+            brnzp EXIT
+
+ERROR       ld R0, INPUT_ERROR  ; Input Error
+            puts
+            ld R0, NEWLINE
+            out
+            brnzp START         ; Restarting Program
+            
+S_ERROR     ld R0, STACK_ERROR  ; Stack Error
+            puts
+            ld R0, NEWLINE
+            out
+            brnzp START         ; Restarting Program
+
+F_ERROR     ld R0, FLOW_ERROR   ; Numeric Overflow or Underflow
+            puts
+            ld R0, NEWLINE
+            out
+            brnzp START         ; Restarting Program
+            
+EXIT        halt
             
 result      .blkw 1
 MULT        .fill x2A
@@ -77,14 +182,15 @@ PLUS        .fill x2B
 MINUS       .fill x2D
 DIVIDE      .fill x2F
 TOS         .fill x2E
-count       .blkw #8
+ASCII_0     .fill x30
+STACK_TOP   .fill x4000
 
 MSG1        .stringz "SMC RPN Calculator\n"
 MSG2        .stringz "Enter 0-9 or +, -, *, /, or . to display result on TOS.\n"
 MSG3        .stringz "It will accept up to 4 numeric digits and perform operations.\n"
-NEWNUM      .stringz "> "
-INPUTERROR  .stringz "? "
-STACKERROR  .stringz "$ "
-FLOWERROR   .stringz "! "
-NEWLINE     .fill xA
+NEW_NUM     .stringz "> "
+INPUT_ERROR .stringz "? "
+STACK_ERROR .stringz "$ "
+FLOW_ERROR  .stringz "! "
+NEWLINE     .fill x000A
 .end
