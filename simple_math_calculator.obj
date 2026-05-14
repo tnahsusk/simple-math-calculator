@@ -2,169 +2,37 @@ LC-3 OBJ FILE
 
 .TEXT
 3000
-358
-2832
-E0A0
+317
+28D8
+E01C
 F022
-E0B2
+E02E
 F022
-E0E9
+E065
 F022
-E02C
+20DE
+F021
+E0D0
 F022
 F020
 F021
 1220
-2033
-F021
 1060
-2231
+22D7
 927F
 1261
 1401
-0818
-2231
+08BF
+22D7
 927F
 1261
 1401
-083D
+08E6
 14B7
-0211
-222A
-927F
-1261
-1001
-193F
-7100
-0FE5
-E017
-F022
-201B
-F021
-0FD9
-E015
-F022
-2016
-F021
-0FD4
-E00A
-F022
-2011
-F021
-0FCF
-F025
+02B8
+488D
+0FEA
 ????
-4000
-003E
-0020
-0000
-003F
-0020
-0000
-0024
-0020
-0000
-0021
-0020
-0000
-000A
-002A
-002B
-002D
-002F
-002E
-0030
-23EB
-953F
-14A1
-1642
-16FF
-0BD5
-6100
-31E3
-0826
-1237
-022C
-23F3
-1001
-F021
-0FDB
-23EE
-927F
-1261
-1401
-05EC
-23D7
-953F
-14A1
-1642
-16FE
-09C1
-23DF
-927F
-1261
-1401
-041B
-23DB
-927F
-1261
-1401
-041D
-23D7
-927F
-1261
-1401
-041B
-23D3
-927F
-1261
-1401
-041B
-0FB6
-1229
-0806
-21CA
-F021
-21B7
-903F
-1021
-0FD4
-E0AF
-F022
-0FB0
-481B
-5020
-14A0
-0415
-1001
-14BF
-0FFB
-4814
-1042
-0E0F
-4811
-94BF
-14A1
-1081
-0E0A
-480C
-16A0
-0599
-5020
-96BF
-16E1
-1243
-0802
-1021
-0FFA
-193F
-7100
-0F6A
-6500
-1921
-6300
-1921
-C1C0
 0053
 004D
 0043
@@ -303,103 +171,197 @@ C1C0
 006E
 0073
 002E
+0000
+5B60
+5DA0
+2240
+927F
+1261
+1001
+1345
+1441
+1482
+1A42
+1B40
+1DA1
+13BC
+0217
+F020
+2237
+927F
+1261
+1401
+0409
+F021
+222D
+927F
+1261
+1401
+0810
+14B7
+020E
+0FE5
+193F
+7B00
+C1C0
+E016
+F022
+201A
+F021
+0F32
+E014
+F022
+2015
+F021
+0F2D
+E009
+F022
+2010
+F021
+0F28
+F025
+4000
+003E
+0020
+0000
+003F
+0020
+0000
+0024
+0020
+0000
+0021
+0020
+0000
 000A
-0000
-004E
-0075
-006D
-0062
-0065
-0072
-0020
-0069
-0073
-0020
-0067
-0072
-0065
-0061
-0074
-0065
-0072
-0020
-0074
-0068
-0061
-006E
-0020
-0039
-0020
-006F
-0072
-0020
-006C
-0065
-0073
-0073
-0020
-0074
-0068
-0061
-006E
-0020
+002A
+002B
 002D
-0039
-002C
-0020
-0063
-0068
-0065
-0063
-006B
-0020
-0072
-0065
-0073
-0075
-006C
-0074
+002F
 002E
-0000
+0030
+????
+????
+FFF6
+000A
+21F4
+F021
+23E5
+953F
+14A1
+1642
+16FF
+0BD0
+6100
+3122
+0FDC
+193F
+7100
+0F08
+23EB
+927F
+1261
+1401
+05ED
+23D4
+953F
+14A1
+1642
+16FE
+09BF
+23DC
+927F
+1261
+1401
+0410
+23D8
+927F
+1261
+1401
+0412
+23D4
+927F
+1261
+1401
+0410
+23D0
+927F
+1261
+1401
+0410
+0FB4
+4818
+5020
+14A0
+05D9
+1001
+14BF
+0FFB
+4811
+1042
+0FD3
+480E
+94BF
+14A1
+1081
+0FCE
+4809
+16A0
+05A2
+5020
+96BF
+16E1
+1243
+09C6
+1021
+0FFA
+6500
+1921
+6300
+1921
+C1C0
 
 .SYMBOL
 ADDR | EXT | LABEL
 3000 |   0 | START
 3007 |   0 | LOOP
-3022 |   0 | S_ERROR
-3027 |   0 | F_ERROR
-302C |   0 | ERROR
-3031 |   0 | EXIT
-3032 |   0 | RESULT
-3033 |   0 | STACK_TOP
-3034 |   0 | NEW_NUM
-3037 |   0 | INPUT_ERROR
-303A |   0 | STACK_ERROR
-303D |   0 | FLOW_ERROR
-3040 |   0 | NEWLINE
-3041 |   0 | MULT
-3042 |   0 | PLUS
-3043 |   0 | MINUS
-3044 |   0 | DIVIDE
-3045 |   0 | TOS
-3046 |   0 | ASCII_0
-3047 |   0 | DONE
-3052 |   0 | BACK
-3056 |   0 | CHECK_OP
-3076 |   0 | NEGATIVE
-307E |   0 | DOUBLEDIGIT
-3081 |   0 | MULTIPLY
-3083 |   0 | M_LOOP
-3088 |   0 | ADDITION
-308B |   0 | SUBTRACTION
-3090 |   0 | DIVISION
-3094 |   0 | D_LOOP
-309A |   0 | PUSH
-309D |   0 | POP2
-30A2 |   0 | MSG1
-30B6 |   0 | MSG2
-30EF |   0 | MSG3
-312E |   0 | MSG4
+301D |   0 | RESULT
+301E |   0 | MSG1
+3032 |   0 | MSG2
+306B |   0 | MSG3
+30A9 |   0 | BUILD_NUM
+30AB |   0 | BUILD_LOOP
+30C6 |   0 | PUSH_BUILT
+30C9 |   0 | S_ERROR
+30CE |   0 | F_ERROR
+30D3 |   0 | ERROR
+30D8 |   0 | EXIT
+30D9 |   0 | STACK_TOP
+30DA |   0 | NEW_NUM
+30DD |   0 | INPUT_ERROR
+30E0 |   0 | STACK_ERROR
+30E3 |   0 | FLOW_ERROR
+30E6 |   0 | NEWLINE
+30E7 |   0 | MULT
+30E8 |   0 | PLUS
+30E9 |   0 | MINUS
+30EA |   0 | DIVIDE
+30EB |   0 | TOS
+30EC |   0 | ASCII_0
+30ED |   0 | CURRENT_NUM
+30EE |   0 | DIGIT_COUNT
+30EF |   0 | NEG_TEN
+30F0 |   0 | ENTER
+30F1 |   0 | DONE
+30FC |   0 | PUSH
+30FF |   0 | CHECK_OP
+311F |   0 | MULTIPLY
+3121 |   0 | M_LOOP
+3126 |   0 | ADDITION
+3129 |   0 | SUBTRACTION
+312E |   0 | DIVISION
+3132 |   0 | D_LOOP
+3138 |   0 | POP2
 
 .LINKER_INFO
 
@@ -407,42 +369,45 @@ ADDR | EXT | LABEL
 # DEBUG SYMBOLS FOR LC3TOOLS
 
 LABEL       | INDEX
-START       |  1263
-LOOP        |  1502
-S_ERROR     |  3045
-F_ERROR     |  3205
-ERROR       |  3383
-EXIT        |  3543
-RESULT      |  3561
-STACK_TOP   |  3712
-NEW_NUM     |  3736
-INPUT_ERROR |  3762
-STACK_ERROR |  3788
-FLOW_ERROR  |  3814
-NEWLINE     |  3840
-MULT        |  3864
-PLUS        |  3886
-MINUS       |  3908
-DIVIDE      |  3930
-TOS         |  3952
-ASCII_0     |  3974
-DONE        |  3997
-BACK        |  4774
-CHECK_OP    |  4979
-NEGATIVE    |  6410
-DOUBLEDIGIT |  6804
-MULTIPLY    |  6947
-M_LOOP      |  7125
-ADDITION    |  7415
-SUBTRACTION |  7650
-DIVISION    |  7949
-D_LOOP      |  8258
-PUSH        |  8607
-POP2        |  8760
-MSG1        |  9044
-MSG2        |  9088
-MSG3        |  9169
-MSG4        |  9256
+START       |  1318
+LOOP        |  1557
+RESULT      |  2754
+MSG1        |  2816
+MSG2        |  2860
+MSG3        |  2941
+BUILD_NUM   |  3027
+BUILD_LOOP  |  3133
+PUSH_BUILT  |  4188
+S_ERROR     |  4260
+F_ERROR     |  4420
+ERROR       |  4598
+EXIT        |  4758
+STACK_TOP   |  4776
+NEW_NUM     |  4800
+INPUT_ERROR |  4826
+STACK_ERROR |  4852
+FLOW_ERROR  |  4878
+NEWLINE     |  4904
+MULT        |  4928
+PLUS        |  4950
+MINUS       |  4972
+DIVIDE      |  4994
+TOS         |  5016
+ASCII_0     |  5038
+CURRENT_NUM |  5060
+DIGIT_COUNT |  5080
+NEG_TEN     |  5100
+ENTER       |  5123
+DONE        |  5148
+PUSH        |  5761
+CHECK_OP    |  5914
+MULTIPLY    |  7333
+M_LOOP      |  7511
+ADDITION    |  7801
+SUBTRACTION |  8036
+DIVISION    |  8335
+D_LOOP      |  8644
+POP2        |  8993
 ====================
 LINE | ADDR | SOURCE
    0 | ???? | ; Simple Math Calculator\n
@@ -472,202 +437,226 @@ LINE | ADDR | SOURCE
   24 | ???? | ; R2 - temp register\n
   25 | ???? | ; R3 - temp register\n
   26 | ???? | ; R4 - RPN stack pointer\n
-  27 | ???? | ; R7 - stores return addresses for JSR calls\n
-  28 | ???? | \n
-  29 | ???? | ; Prompts:\n
-  30 | ???? | ;   > - ready to accept a new number\n
-  31 | ???? | ;   ? - error occured, input doesn\'t make sense\n
-  32 | ???? | ;   $ - stack error occurred\n
-  33 | ???? | ;   ! - numeric overflow or underflow\n
-  34 | ???? | \n
-  35 | ???? | \n
-  36 | ???? | .orig x3000\n
+  27 | ???? | ; R5 - current number accumulator\n
+  28 | ???? | ; R6 - digit counter\n
+  29 | ???? | ; R7 - stores return addresses for JSR calls\n
+  30 | ???? | \n
+  31 | ???? | ; Prompts:\n
+  32 | ???? | ;   > - ready to accept a new number\n
+  33 | ???? | ;   ? - error occured, input doesn\'t make sense\n
+  34 | ???? | ;   $ - stack error occurred\n
+  35 | ???? | ;   ! - numeric overflow or underflow\n
+  36 | ???? | \n
   37 | ???? | \n
-  38 | 3000 | START       ld R4, STACK_TOP    ; RPN Stack Pointer Address\n
-  39 | 3001 |             lea R0, MSG1        ; Printing Title and Instruction\n
-  40 | 3002 |             puts\n
-  41 | 3003 |             lea R0, MSG2\n
-  42 | 3004 |             puts\n
-  43 | 3005 |             lea R0, MSG3\n
-  44 | 3006 |             puts\n
-  45 | ???? |             \n
-  46 | 3007 | LOOP        lea R0, NEW_NUM      ; Asking for a New Number/Operator\n
-  47 | 3008 |             puts\n
-  48 | 3009 |             getc\n
-  49 | 300A |             out\n
-  50 | 300B |             add R1, R0, #0      ; Transferring the new number to R1\n
-  51 | 300C |             ld R0, NEWLINE\n
-  52 | 300D |             out\n
-  53 | 300E |             add R0, R1, #0      ; Transferring the number back to R0\n
-  54 | ???? |             \n
-  55 | 300F |             ld R1, MULT         ; Setting R1 to \"*\" and turning it to its negative decimal value\n
-  56 | 3010 |             not R1, R1\n
-  57 | 3011 |             add R1, R1, #1\n
-  58 | 3012 |             add R2, R0, R1      ; If R2 is negative, that means the input is not a valid input (decimal value is too small)\n
-  59 | 3013 |             brn ERROR\n
-  60 | ???? |             \n
-  61 | 3014 |             ld R1, ASCII_0      ; Setting R1 to ASCII 0 and turning it to its negative decimal value\n
-  62 | 3015 |             not R1, R1\n
-  63 | 3016 |             add R1, R1, #1\n
-  64 | 3017 |             add R2, R0, R1      ; Since we checked the lower bound, anything less than ASCII 0 will be either a valid operator or \",\"\n
-  65 | 3018 |             brn CHECK_OP\n
-  66 | 3019 |             add R2, R2, #-9     ; If R2 is negative, that means the input is not a valid input (decimal value is too large)\n
-  67 | 301A |             brp ERROR\n
-  68 | ???? |             \n
-  69 | 301B |             ld R1, ASCII_0      ; Resetting R1 to ASCII 0 and turning it to its negative decimal value\n
-  70 | 301C |             not R1, R1\n
-  71 | 301D |             add R1, R1, #1\n
-  72 | 301E |             add R0, R0, R1      ; Converting the ASCII digit to an integer\n
-  73 | 301F |             add R4, R4, #-1     ; Decrementing the R4 and repeating the Loop until CHECK_OP notices a \".\" or an error occurs\n
-  74 | 3020 |             str R0, R4, #0      ; Storing the integer in R4 (RPN Stack Pointer)\n
-  75 | 3021 |             brnzp LOOP\n
-  76 | ???? | \n
-  77 | 3022 | S_ERROR     lea R0, STACK_ERROR ; Stack Error\n
-  78 | 3023 |             puts\n
-  79 | 3024 |             ld R0, NEWLINE\n
-  80 | 3025 |             out\n
-  81 | 3026 |             brnzp START         ; Restarting Program\n
+  38 | ???? | .orig x3000\n
+  39 | ???? | \n
+  40 | 3000 | START       ld R4, STACK_TOP    ; RPN Stack Pointer Address\n
+  41 | 3001 |             lea R0, MSG1        ; Printing Title and Instruction\n
+  42 | 3002 |             puts\n
+  43 | 3003 |             lea R0, MSG2\n
+  44 | 3004 |             puts\n
+  45 | 3005 |             lea R0, MSG3\n
+  46 | 3006 |             puts\n
+  47 | ???? |             \n
+  48 | 3007 | LOOP        ld R0, NEWLINE\n
+  49 | 3008 |             out\n
+  50 | 3009 |             lea R0, NEW_NUM      ; Asking for a New Number/Operator\n
+  51 | 300A |             puts\n
+  52 | 300B |             getc\n
+  53 | 300C |             out\n
+  54 | 300D |             add R1, R0, #0      ; Transferring the new number to R1\n
+  55 | 300E |             add R0, R1, #0      ; Transferring the number back to R0\n
+  56 | ???? |             \n
+  57 | 300F |             ld R1, MULT         ; Setting R1 to \"*\" and turning it to its negative decimal value\n
+  58 | 3010 |             not R1, R1\n
+  59 | 3011 |             add R1, R1, #1\n
+  60 | 3012 |             add R2, R0, R1      ; If R2 is negative, that means the input is not a valid input (decimal value is too small)\n
+  61 | 3013 |             brn ERROR\n
+  62 | ???? |             \n
+  63 | 3014 |             ld R1, ASCII_0      ; Setting R1 to ASCII 0 and turning it to its negative decimal value\n
+  64 | 3015 |             not R1, R1\n
+  65 | 3016 |             add R1, R1, #1\n
+  66 | 3017 |             add R2, R0, R1      ; Since we checked the lower bound, anything less than ASCII 0 will be either a valid operator or \",\"\n
+  67 | 3018 |             brn CHECK_OP\n
+  68 | 3019 |             add R2, R2, #-9     ; If R2 is negative, that means the input is not a valid input (decimal value is too large)\n
+  69 | 301A |             brp ERROR\n
+  70 | ???? |             \n
+  71 | 301B |             jsr BUILD_NUM       ; Input is a Number, time to get a 1 to 4 digit number\n
+  72 | 301C |             brnzp LOOP\n
+  73 | ???? | \n
+  74 | 301D | result      .blkw 1             ; Result from the Calculator\n
+  75 | ???? | \n
+  76 | 301E | MSG1        .stringz \"SMC RPN Calculator\\n\"\n
+  77 | 3032 | MSG2        .stringz \"Enter 0-9 or +, -, *, /, or . to display result on TOS.\\n\"\n
+  78 | 306B | MSG3        .stringz \"It will accept up to 4 numeric digits and perform operations.\"\n
+  79 | ???? | \n
+  80 | 30A9 | BUILD_NUM   and R5, R5, #0      ; R5 = current number\n
+  81 | 30AA |             and R6, R6, #0      ; R6 = digit count\n
   82 | ???? | \n
-  83 | 3027 | F_ERROR     lea R0, FLOW_ERROR  ; Numeric Overflow or Underflow\n
-  84 | 3028 |             puts\n
-  85 | 3029 |             ld R0, NEWLINE\n
-  86 | 302A |             out\n
-  87 | 302B |             brnzp START         ; Restarting Program\n
-  88 | ???? | \n
-  89 | 302C | ERROR       lea R0, INPUT_ERROR ; Input Error\n
-  90 | 302D |             puts\n
-  91 | 302E |             ld R0, NEWLINE\n
-  92 | 302F |             out\n
-  93 | 3030 |             brnzp START         ; Restarting Program\n
-  94 | ???? | \n
-  95 | 3031 | EXIT        halt\n
-  96 | ???? | \n
-  97 | 3032 | result      .blkw 1             ; Result from the Calculator (Will also be Printed in the Console unless the number is greater than 9 or less than -9)\n
-  98 | 3033 | STACK_TOP   .fill x4000\n
-  99 | 3034 | NEW_NUM     .stringz \"> \"\n
- 100 | 3037 | INPUT_ERROR .stringz \"? \"\n
- 101 | 303A | STACK_ERROR .stringz \"$ \"\n
- 102 | 303D | FLOW_ERROR  .stringz \"! \"\n
- 103 | 3040 | NEWLINE     .fill x000A\n
- 104 | 3041 | MULT        .fill x2A\n
- 105 | 3042 | PLUS        .fill x2B\n
- 106 | 3043 | MINUS       .fill x2D\n
- 107 | 3044 | DIVIDE      .fill x2F\n
- 108 | 3045 | TOS         .fill x2E\n
- 109 | 3046 | ASCII_0     .fill x30\n
- 110 | ???? | \n
- 111 | 3047 | DONE        ld R1, STACK_TOP    ; Checks if the Stack has Extra Numbers\n
- 112 | 3048 |             not R2, R4\n
- 113 | 3049 |             add R2, R2, #1\n
- 114 | 304A |             add R3, R1, R2      ; Finds the Amount of Numbers in the Stack\n
- 115 | 304B |             add R3, R3, #-1     ; Finds the Remaining Amount of Numbers in the Stack after taking 1\n
- 116 | 304C |             brnp S_ERROR        ; brnp checks if there is more than 1 number in the stack or 0 numbers in the stack\n
- 117 | ???? |             \n
- 118 | 304D |             ldr R0, R4, #0      ; Takes the current value in R4\n
- 119 | 304E |             st R0, result       ; Stores it into result\n
- 120 | 304F |             brn NEGATIVE        ; If it is negative, a negative sign needs to be outputted and the number has to be converted to positive\n
- 121 | 3050 |             add R1, R0, #-9     ; Checks if R0 is greater than 9\n
- 122 | 3051 |             brp DOUBLEDIGIT\n
- 123 | 3052 | BACK        ld R1, ASCII_0      ; Loads in ASCII_0 to convert R0 to ASCII\n
- 124 | 3053 |             add R0, R0, R1\n
- 125 | 3054 |             out                 ; Prints out the ASCII of whatever number is R0\n
- 126 | 3055 |             brnzp EXIT\n
- 127 | ???? | \n
- 128 | 3056 | CHECK_OP    ld R1, TOS          ; Checking if the Operator is \".\"\n
- 129 | 3057 |             not R1, R1\n
- 130 | 3058 |             add R1, R1, #1\n
- 131 | 3059 |             add R2, R0, R1\n
- 132 | 305A |             brz DONE\n
- 133 | ???? |             \n
- 134 | 305B |             ld R1, STACK_TOP    ; Checks if the Stack has 2 Available Numbers to use for the Operation\n
- 135 | 305C |             not R2, R4\n
- 136 | 305D |             add R2, R2, #1\n
- 137 | 305E |             add R3, R1, R2      ; Finds the Amount of Numbers in the Stack\n
- 138 | 305F |             add R3, R3, #-2     ; Finds the Remaining Amount of Numbers in the Stack after taking 2\n
- 139 | 3060 |             brn S_ERROR\n
- 140 | ???? |             \n
- 141 | 3061 |             ld R1, MULT         ; Checking if the Operator is the Multiplication Symbol\n
- 142 | 3062 |             not R1, R1\n
- 143 | 3063 |             add R1, R1, #1\n
- 144 | 3064 |             add R2, R0, R1\n
- 145 | 3065 |             brz MULTIPLY\n
- 146 | ???? |             \n
- 147 | 3066 |             ld R1, PLUS         ; Checking if the Operator is the Addition Symbol\n
- 148 | 3067 |             not R1, R1\n
- 149 | 3068 |             add R1, R1, #1\n
- 150 | 3069 |             add R2, R0, R1\n
- 151 | 306A |             brz ADDITION\n
- 152 | ???? |             \n
- 153 | 306B |             ld R1, MINUS        ; Checking if the Operator is the Subtraction Symbol\n
- 154 | 306C |             not R1, R1\n
- 155 | 306D |             add R1, R1, #1\n
- 156 | 306E |             add R2, R0, R1\n
- 157 | 306F |             brz SUBTRACTION\n
- 158 | ???? |             \n
- 159 | 3070 |             ld R1, DIVIDE       ; Checking if the Operator is the Division Symbol\n
- 160 | 3071 |             not R1, R1\n
- 161 | 3072 |             add R1, R1, #1\n
- 162 | 3073 |             add R2, R0, R1\n
- 163 | 3074 |             brz DIVISION\n
- 164 | ???? |             \n
- 165 | 3075 |             brnzp ERROR         ; Input is \",\" which is an disallowed input\n
+  83 | 30AB | BUILD_LOOP  ld R1, ASCII_0      ; convert ASCII digit to integer\n
+  84 | 30AC |             not R1, R1\n
+  85 | 30AD |             add R1, R1, #1\n
+  86 | 30AE |             add R0, R0, R1      ; R0 = digit value\n
+  87 | ???? | \n
+  88 | 30AF |             add R1, R5, R5      ; Number + Number = 2(Number)\n
+  89 | 30B0 |             add R2, R1, R1      ; 2(Number) + 2(Number) = 4(Number)\n
+  90 | 30B1 |             add R2, R2, R2      ; 4(Number) + 4(Number) = 8(Number)\n
+  91 | 30B2 |             add R5, R1, R2      ; 8(Number) + 2(Number) = 10(Number)\n
+  92 | ???? | \n
+  93 | 30B3 |             add R5, R5, R0      ; add digit\n
+  94 | 30B4 |             add R6, R6, #1      ; increment digit count\n
+  95 | 30B5 |             add R1, R6, #-4     ; check >4 digits\n
+  96 | 30B6 |             brp F_ERROR\n
+  97 | ???? | \n
+  98 | 30B7 |             getc                ; get next char\n
+  99 | 30B8 |             ld R1, ENTER        ; check ENTER\n
+ 100 | 30B9 |             not R1, R1\n
+ 101 | 30BA |             add R1, R1, #1\n
+ 102 | 30BB |             add R2, R0, R1\n
+ 103 | 30BC |             brz PUSH_BUILT\n
+ 104 | 30BD |             out\n
+ 105 | ???? | \n
+ 106 | 30BE |             ld R1, ASCII_0      ; check if digit\n
+ 107 | 30BF |             not R1, R1\n
+ 108 | 30C0 |             add R1, R1, #1\n
+ 109 | 30C1 |             add R2, R0, R1\n
+ 110 | 30C2 |             brn ERROR\n
+ 111 | ???? | \n
+ 112 | 30C3 |             add R2, R2, #-9\n
+ 113 | 30C4 |             brp ERROR\n
+ 114 | ???? | \n
+ 115 | 30C5 |             brnzp BUILD_LOOP\n
+ 116 | ???? | \n
+ 117 | 30C6 | PUSH_BUILT  add R4, R4, #-1\n
+ 118 | 30C7 |             str R5, R4, #0\n
+ 119 | 30C8 |             ret\n
+ 120 | ???? | \n
+ 121 | 30C9 | S_ERROR     lea R0, STACK_ERROR ; Stack Error\n
+ 122 | 30CA |             puts\n
+ 123 | 30CB |             ld R0, NEWLINE\n
+ 124 | 30CC |             out\n
+ 125 | 30CD |             brnzp START         ; Restarting Program\n
+ 126 | ???? | \n
+ 127 | 30CE | F_ERROR     lea R0, FLOW_ERROR  ; Numeric Overflow or Underflow\n
+ 128 | 30CF |             puts\n
+ 129 | 30D0 |             ld R0, NEWLINE\n
+ 130 | 30D1 |             out\n
+ 131 | 30D2 |             brnzp START         ; Restarting Program\n
+ 132 | ???? | \n
+ 133 | 30D3 | ERROR       lea R0, INPUT_ERROR ; Input Error\n
+ 134 | 30D4 |             puts\n
+ 135 | 30D5 |             ld R0, NEWLINE\n
+ 136 | 30D6 |             out\n
+ 137 | 30D7 |             brnzp START         ; Restarting Program\n
+ 138 | ???? | \n
+ 139 | 30D8 | EXIT        halt\n
+ 140 | ???? | \n
+ 141 | 30D9 | STACK_TOP   .fill x4000\n
+ 142 | 30DA | NEW_NUM     .stringz \"> \"\n
+ 143 | 30DD | INPUT_ERROR .stringz \"? \"\n
+ 144 | 30E0 | STACK_ERROR .stringz \"$ \"\n
+ 145 | 30E3 | FLOW_ERROR  .stringz \"! \"\n
+ 146 | 30E6 | NEWLINE     .fill x000A\n
+ 147 | 30E7 | MULT        .fill x2A\n
+ 148 | 30E8 | PLUS        .fill x2B\n
+ 149 | 30E9 | MINUS       .fill x2D\n
+ 150 | 30EA | DIVIDE      .fill x2F\n
+ 151 | 30EB | TOS         .fill x2E\n
+ 152 | 30EC | ASCII_0     .fill x30\n
+ 153 | 30ED | CURRENT_NUM .blkw 1\n
+ 154 | 30EE | DIGIT_COUNT .blkw 1\n
+ 155 | 30EF | NEG_TEN     .fill #-10\n
+ 156 | 30F0 | ENTER       .fill x000A\n
+ 157 | ???? | \n
+ 158 | 30F1 | DONE        ld R0, NEWLINE\n
+ 159 | 30F2 |             out\n
+ 160 | 30F3 |             ld R1, STACK_TOP    ; Checks if the Stack has Extra Numbers\n
+ 161 | 30F4 |             not R2, R4\n
+ 162 | 30F5 |             add R2, R2, #1\n
+ 163 | 30F6 |             add R3, R1, R2      ; Finds the Amount of Numbers in the Stack\n
+ 164 | 30F7 |             add R3, R3, #-1     ; Finds the Remaining Amount of Numbers in the Stack after taking 1\n
+ 165 | 30F8 |             brnp S_ERROR        ; brnp checks if there is more than 1 number in the stack or 0 numbers in the stack\n
  166 | ???? |             \n
- 167 | 3076 | NEGATIVE    add R1, R0, #9      ; Checks if R0 is less than -9\n
- 168 | 3077 |             brn DOUBLEDIGIT\n
- 169 | ???? |             \n
- 170 | 3078 |             ld R0, MINUS        ; Outputs a negative sign\n
- 171 | 3079 |             out\n
- 172 | 307A |             ld R0, result       ; Negates R0 AFTER it is already stored in result\n
- 173 | 307B |             not R0, R0\n
- 174 | 307C |             add R0, R0, #1\n
- 175 | 307D |             brnzp BACK          ; Returns to where it was originally, but positive\n
- 176 | ???? | \n
- 177 | 307E | DOUBLEDIGIT lea R0, MSG4        ; Prints that the number is greater than 9 or less than -9 in console\n
- 178 | 307F |             puts\n
- 179 | 3080 |             brnzp EXIT\n
- 180 | ???? | \n
- 181 | 3081 | MULTIPLY    jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack\n
- 182 | 3082 |             and R0, R0, #0      ; Sum of Repeated Addition to find the Product of R1 and R2\n
- 183 | 3083 | M_LOOP      add R2, R2, #0      ; Checking if R2 is at zero to end the loop\n
- 184 | 3084 |             brz PUSH            ; Putting the new Number into the Stack\n
- 185 | 3085 |             add R0, R0, R1      ; Repeated Addition\n
- 186 | 3086 |             add R2, R2, #-1     ; Decrementing R2 until it is 0\n
- 187 | 3087 |             brnzp M_LOOP\n
- 188 | ???? | \n
- 189 | 3088 | ADDITION    jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack\n
- 190 | 3089 |             add R0, R1, R2      ; Adding 2 Most Recent Numbers in the Stack\n
- 191 | 308A |             brnzp PUSH          ; Putting the new Number into the Stack\n
- 192 | ???? | \n
- 193 | 308B | SUBTRACTION jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack\n
- 194 | 308C |             not R2, R2          ; Negating R2\n
- 195 | 308D |             add R2, R2, #1\n
- 196 | 308E |             add R0, R2, R1      ; Adding R1 and the Negation of R2\n
- 197 | 308F |             brnzp PUSH          ; Putting the new Number into the Stack\n
- 198 | ???? | \n
- 199 | 3090 | DIVISION    jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack\n
- 200 | 3091 |             add R3, R2, #0      ; Checking if R2 is 0\n
- 201 | 3092 |             brz ERROR           ; If R2 is 0, then Division by 0 which is an Error\n
- 202 | 3093 |             and R0, R0, #0      ; Counter of the amount of times R2 subtracts into R1\n
- 203 | 3094 | D_LOOP      not R3, R2          ; Negating R2 into R3\n
- 204 | 3095 |             add R3, R3, #1\n
- 205 | 3096 |             add R1, R1, R3      ; Addition of R1 and Negation of R3\n
- 206 | 3097 |             brn PUSH            ; If R1 is not negative yet, the loop repeats, otherwise puts the new Number into the Stack\n
- 207 | 3098 |             add R0, R0, #1      ; Incrementing R1\n
- 208 | 3099 |             brnzp D_LOOP\n
- 209 | ???? | \n
- 210 | 309A | PUSH        add R4, R4, #-1     ; Decrementing the Stack\n
- 211 | 309B |             str R0, R4, #0      ; Storing the New Number into the Stack\n
- 212 | 309C |             brnzp LOOP\n
+ 167 | 30F9 |             ldr R0, R4, #0      ; Takes the current value in R4\n
+ 168 | 30FA |             st R0, result       ; Stores it into result\n
+ 169 | 30FB |             brnzp EXIT\n
+ 170 | ???? | \n
+ 171 | 30FC | PUSH        add R4, R4, #-1     ; Decrementing the Stack\n
+ 172 | 30FD |             str R0, R4, #0      ; Storing the New Number into the Stack\n
+ 173 | 30FE |             brnzp LOOP\n
+ 174 | ???? | \n
+ 175 | 30FF | CHECK_OP    ld R1, TOS          ; Checking if the Operator is \".\"\n
+ 176 | 3100 |             not R1, R1\n
+ 177 | 3101 |             add R1, R1, #1\n
+ 178 | 3102 |             add R2, R0, R1\n
+ 179 | 3103 |             brz DONE\n
+ 180 | ???? |             \n
+ 181 | 3104 |             ld R1, STACK_TOP    ; Checks if the Stack has 2 Available Numbers to use for the Operation\n
+ 182 | 3105 |             not R2, R4\n
+ 183 | 3106 |             add R2, R2, #1\n
+ 184 | 3107 |             add R3, R1, R2      ; Finds the Amount of Numbers in the Stack\n
+ 185 | 3108 |             add R3, R3, #-2     ; Finds the Remaining Amount of Numbers in the Stack after taking 2\n
+ 186 | 3109 |             brn S_ERROR\n
+ 187 | ???? |             \n
+ 188 | 310A |             ld R1, MULT         ; Checking if the Operator is the Multiplication Symbol\n
+ 189 | 310B |             not R1, R1\n
+ 190 | 310C |             add R1, R1, #1\n
+ 191 | 310D |             add R2, R0, R1\n
+ 192 | 310E |             brz MULTIPLY\n
+ 193 | ???? |             \n
+ 194 | 310F |             ld R1, PLUS         ; Checking if the Operator is the Addition Symbol\n
+ 195 | 3110 |             not R1, R1\n
+ 196 | 3111 |             add R1, R1, #1\n
+ 197 | 3112 |             add R2, R0, R1\n
+ 198 | 3113 |             brz ADDITION\n
+ 199 | ???? |             \n
+ 200 | 3114 |             ld R1, MINUS        ; Checking if the Operator is the Subtraction Symbol\n
+ 201 | 3115 |             not R1, R1\n
+ 202 | 3116 |             add R1, R1, #1\n
+ 203 | 3117 |             add R2, R0, R1\n
+ 204 | 3118 |             brz SUBTRACTION\n
+ 205 | ???? |             \n
+ 206 | 3119 |             ld R1, DIVIDE       ; Checking if the Operator is the Division Symbol\n
+ 207 | 311A |             not R1, R1\n
+ 208 | 311B |             add R1, R1, #1\n
+ 209 | 311C |             add R2, R0, R1\n
+ 210 | 311D |             brz DIVISION\n
+ 211 | ???? |             \n
+ 212 | 311E |             brnzp ERROR         ; Input is \",\" which is an disallowed input\n
  213 | ???? | \n
- 214 | 309D | POP2        ldr R2, R4, #0      ; Retrieving the Last Number in the Stack\n
- 215 | 309E |             add R4, R4, #1      ; Incrementing the Stack\n
- 216 | 309F |             ldr R1, R4, #0      ; Retrieving the Next Last Number in the Stack\n
- 217 | 30A0 |             add R4, R4, #1      ; Incrementing the Stack\n
- 218 | 30A1 |             ret\n
- 219 | ???? | \n
- 220 | 30A2 | MSG1        .stringz \"SMC RPN Calculator\\n\"\n
- 221 | 30B6 | MSG2        .stringz \"Enter 0-9 or +, -, *, /, or . to display result on TOS.\\n\"\n
- 222 | 30EF | MSG3        .stringz \"It will accept up to 4 numeric digits and perform operations.\\n\"\n
- 223 | 312E | MSG4        .stringz \"Number is greater than 9 or less than -9, check result.\"\n
- 224 | ???? | .end
+ 214 | 311F | MULTIPLY    jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack\n
+ 215 | 3120 |             and R0, R0, #0      ; Sum of Repeated Addition to find the Product of R1 and R2\n
+ 216 | 3121 | M_LOOP      add R2, R2, #0      ; Checking if R2 is at zero to end the loop\n
+ 217 | 3122 |             brz PUSH            ; Putting the new Number into the Stack\n
+ 218 | 3123 |             add R0, R0, R1      ; Repeated Addition\n
+ 219 | 3124 |             add R2, R2, #-1     ; Decrementing R2 until it is 0\n
+ 220 | 3125 |             brnzp M_LOOP\n
+ 221 | ???? | \n
+ 222 | 3126 | ADDITION    jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack\n
+ 223 | 3127 |             add R0, R1, R2      ; Adding 2 Most Recent Numbers in the Stack\n
+ 224 | 3128 |             brnzp PUSH          ; Putting the new Number into the Stack\n
+ 225 | ???? | \n
+ 226 | 3129 | SUBTRACTION jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack\n
+ 227 | 312A |             not R2, R2          ; Negating R2\n
+ 228 | 312B |             add R2, R2, #1\n
+ 229 | 312C |             add R0, R2, R1      ; Adding R1 and the Negation of R2\n
+ 230 | 312D |             brnzp PUSH          ; Putting the new Number into the Stack\n
+ 231 | ???? | \n
+ 232 | 312E | DIVISION    jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack\n
+ 233 | 312F |             add R3, R2, #0      ; Checking if R2 is 0\n
+ 234 | 3130 |             brz ERROR           ; If R2 is 0, then Division by 0 which is an Error\n
+ 235 | 3131 |             and R0, R0, #0      ; Counter of the amount of times R2 subtracts into R1\n
+ 236 | 3132 | D_LOOP      not R3, R2          ; Negating R2 into R3\n
+ 237 | 3133 |             add R3, R3, #1\n
+ 238 | 3134 |             add R1, R1, R3      ; Addition of R1 and Negation of R3\n
+ 239 | 3135 |             brn PUSH            ; If R1 is not negative yet, the loop repeats, otherwise puts the new Number into the Stack\n
+ 240 | 3136 |             add R0, R0, #1      ; Incrementing R1\n
+ 241 | 3137 |             brnzp D_LOOP\n
+ 242 | ???? | \n
+ 243 | 3138 | POP2        ldr R2, R4, #0      ; Retrieving the Last Number in the Stack\n
+ 244 | 3139 |             add R4, R4, #1      ; Incrementing the Stack\n
+ 245 | 313A |             ldr R1, R4, #0      ; Retrieving the Next Last Number in the Stack\n
+ 246 | 313B |             add R4, R4, #1      ; Incrementing the Stack\n
+ 247 | 313C |             ret\n
+ 248 | ???? | .end
 ====================

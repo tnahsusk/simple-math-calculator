@@ -25,6 +25,8 @@
 ; R2 - temp register
 ; R3 - temp register
 ; R4 - RPN stack pointer
+; R5 - current number accumulator
+; R6 - digit counter
 ; R7 - stores return addresses for JSR calls
 
 ; Prompts:
@@ -44,13 +46,13 @@ START       ld R4, STACK_TOP    ; RPN Stack Pointer Address
             lea R0, MSG3
             puts
             
-LOOP        lea R0, NEW_NUM      ; Asking for a New Number/Operator
+LOOP        ld R0, NEWLINE
+            out
+            lea R0, NEW_NUM      ; Asking for a New Number/Operator
             puts
             getc
             out
             add R1, R0, #0      ; Transferring the new number to R1
-            ld R0, NEWLINE
-            out
             add R0, R1, #0      ; Transferring the number back to R0
             
             ld R1, MULT         ; Setting R1 to "*" and turning it to its negative decimal value
@@ -67,13 +69,55 @@ LOOP        lea R0, NEW_NUM      ; Asking for a New Number/Operator
             add R2, R2, #-9     ; If R2 is negative, that means the input is not a valid input (decimal value is too large)
             brp ERROR
             
-            ld R1, ASCII_0      ; Resetting R1 to ASCII 0 and turning it to its negative decimal value
+            jsr BUILD_NUM       ; Input is a Number, time to get a 1 to 4 digit number
+            brnzp LOOP
+
+result      .blkw 1             ; Result from the Calculator
+
+MSG1        .stringz "SMC RPN Calculator\n"
+MSG2        .stringz "Enter 0-9 or +, -, *, /, or . to display result on TOS.\n"
+MSG3        .stringz "It will accept up to 4 numeric digits and perform operations."
+
+BUILD_NUM   and R5, R5, #0      ; R5 = current number
+            and R6, R6, #0      ; R6 = digit count
+
+BUILD_LOOP  ld R1, ASCII_0      ; convert ASCII digit to integer
             not R1, R1
             add R1, R1, #1
-            add R0, R0, R1      ; Converting the ASCII digit to an integer
-            add R4, R4, #-1     ; Decrementing the R4 and repeating the Loop until CHECK_OP notices a "." or an error occurs
-            str R0, R4, #0      ; Storing the integer in R4 (RPN Stack Pointer)
-            brnzp LOOP
+            add R0, R0, R1      ; R0 = digit value
+
+            add R1, R5, R5      ; Number + Number = 2(Number)
+            add R2, R1, R1      ; 2(Number) + 2(Number) = 4(Number)
+            add R2, R2, R2      ; 4(Number) + 4(Number) = 8(Number)
+            add R5, R1, R2      ; 8(Number) + 2(Number) = 10(Number)
+
+            add R5, R5, R0      ; add digit
+            add R6, R6, #1      ; increment digit count
+            add R1, R6, #-4     ; check >4 digits
+            brp F_ERROR
+
+            getc                ; get next char
+            ld R1, ENTER        ; check ENTER
+            not R1, R1
+            add R1, R1, #1
+            add R2, R0, R1
+            brz PUSH_BUILT
+            out
+
+            ld R1, ASCII_0      ; check if digit
+            not R1, R1
+            add R1, R1, #1
+            add R2, R0, R1
+            brn ERROR
+
+            add R2, R2, #-9
+            brp ERROR
+
+            brnzp BUILD_LOOP
+
+PUSH_BUILT  add R4, R4, #-1
+            str R5, R4, #0
+            ret
 
 S_ERROR     lea R0, STACK_ERROR ; Stack Error
             puts
@@ -95,7 +139,6 @@ ERROR       lea R0, INPUT_ERROR ; Input Error
 
 EXIT        halt
 
-result      .blkw 1             ; Result from the Calculator (Will also be Printed in the Console unless the number is greater than 9 or less than -9)
 STACK_TOP   .fill x4000
 NEW_NUM     .stringz "> "
 INPUT_ERROR .stringz "? "
@@ -108,8 +151,14 @@ MINUS       .fill x2D
 DIVIDE      .fill x2F
 TOS         .fill x2E
 ASCII_0     .fill x30
+CURRENT_NUM .blkw 1
+DIGIT_COUNT .blkw 1
+NEG_TEN     .fill #-10
+ENTER       .fill x000A
 
-DONE        ld R1, STACK_TOP    ; Checks if the Stack has Extra Numbers
+DONE        ld R0, NEWLINE
+            out
+            ld R1, STACK_TOP    ; Checks if the Stack has Extra Numbers
             not R2, R4
             add R2, R2, #1
             add R3, R1, R2      ; Finds the Amount of Numbers in the Stack
@@ -118,13 +167,11 @@ DONE        ld R1, STACK_TOP    ; Checks if the Stack has Extra Numbers
             
             ldr R0, R4, #0      ; Takes the current value in R4
             st R0, result       ; Stores it into result
-            brn NEGATIVE        ; If it is negative, a negative sign needs to be outputted and the number has to be converted to positive
-            add R1, R0, #-9     ; Checks if R0 is greater than 9
-            brp DOUBLEDIGIT
-BACK        ld R1, ASCII_0      ; Loads in ASCII_0 to convert R0 to ASCII
-            add R0, R0, R1
-            out                 ; Prints out the ASCII of whatever number is R0
             brnzp EXIT
+
+PUSH        add R4, R4, #-1     ; Decrementing the Stack
+            str R0, R4, #0      ; Storing the New Number into the Stack
+            brnzp LOOP
 
 CHECK_OP    ld R1, TOS          ; Checking if the Operator is "."
             not R1, R1
@@ -164,20 +211,6 @@ CHECK_OP    ld R1, TOS          ; Checking if the Operator is "."
             brz DIVISION
             
             brnzp ERROR         ; Input is "," which is an disallowed input
-            
-NEGATIVE    add R1, R0, #9      ; Checks if R0 is less than -9
-            brn DOUBLEDIGIT
-            
-            ld R0, MINUS        ; Outputs a negative sign
-            out
-            ld R0, result       ; Negates R0 AFTER it is already stored in result
-            not R0, R0
-            add R0, R0, #1
-            brnzp BACK          ; Returns to where it was originally, but positive
-
-DOUBLEDIGIT lea R0, MSG4        ; Prints that the number is greater than 9 or less than -9 in console
-            puts
-            brnzp EXIT
 
 MULTIPLY    jsr POP2            ; Retrieving the 2 Most Recent Additions to the Stack
             and R0, R0, #0      ; Sum of Repeated Addition to find the Product of R1 and R2
@@ -208,18 +241,9 @@ D_LOOP      not R3, R2          ; Negating R2 into R3
             add R0, R0, #1      ; Incrementing R1
             brnzp D_LOOP
 
-PUSH        add R4, R4, #-1     ; Decrementing the Stack
-            str R0, R4, #0      ; Storing the New Number into the Stack
-            brnzp LOOP
-
 POP2        ldr R2, R4, #0      ; Retrieving the Last Number in the Stack
             add R4, R4, #1      ; Incrementing the Stack
             ldr R1, R4, #0      ; Retrieving the Next Last Number in the Stack
             add R4, R4, #1      ; Incrementing the Stack
             ret
-
-MSG1        .stringz "SMC RPN Calculator\n"
-MSG2        .stringz "Enter 0-9 or +, -, *, /, or . to display result on TOS.\n"
-MSG3        .stringz "It will accept up to 4 numeric digits and perform operations.\n"
-MSG4        .stringz "Number is greater than 9 or less than -9, check result."
 .end
