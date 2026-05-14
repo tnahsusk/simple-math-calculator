@@ -145,9 +145,6 @@ MINUS       .fill x2D
 DIVIDE      .fill x2F
 TOS         .fill x2E
 ASCII_0     .fill x30
-CURRENT_NUM .blkw 1
-DIGIT_COUNT .blkw 1
-NEG_TEN     .fill #-10
 ENTER       .fill x000A
 
 DONE        ld R1, STACK_TOP    ; Checks if the Stack has Extra Numbers
