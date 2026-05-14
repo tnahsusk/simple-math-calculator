@@ -121,29 +121,23 @@ PUSH_BUILT  add R4, R4, #-1
 
 S_ERROR     lea R0, STACK_ERROR ; Stack Error
             puts
-            ld R0, NEWLINE
-            out
             brnzp START         ; Restarting Program
 
 F_ERROR     lea R0, FLOW_ERROR  ; Numeric Overflow or Underflow
             puts
-            ld R0, NEWLINE
-            out
             brnzp START         ; Restarting Program
 
 ERROR       lea R0, INPUT_ERROR ; Input Error
             puts
-            ld R0, NEWLINE
-            out
             brnzp START         ; Restarting Program
 
 EXIT        halt
 
 STACK_TOP   .fill x4000
 NEW_NUM     .stringz "> "
-INPUT_ERROR .stringz "? "
-STACK_ERROR .stringz "$ "
-FLOW_ERROR  .stringz "! "
+INPUT_ERROR .stringz "\n?\n"
+STACK_ERROR .stringz "\n$\n"
+FLOW_ERROR  .stringz "\n!\n"
 NEWLINE     .fill x000A
 MULT        .fill x2A
 PLUS        .fill x2B
@@ -156,9 +150,7 @@ DIGIT_COUNT .blkw 1
 NEG_TEN     .fill #-10
 ENTER       .fill x000A
 
-DONE        ld R0, NEWLINE
-            out
-            ld R1, STACK_TOP    ; Checks if the Stack has Extra Numbers
+DONE        ld R1, STACK_TOP    ; Checks if the Stack has Extra Numbers
             not R2, R4
             add R2, R2, #1
             add R3, R1, R2      ; Finds the Amount of Numbers in the Stack
@@ -234,13 +226,29 @@ DIVISION    jsr POP2            ; Retrieving the 2 Most Recent Additions to the 
             add R3, R2, #0      ; Checking if R2 is 0
             brz ERROR           ; If R2 is 0, then Division by 0 which is an Error
             and R0, R0, #0      ; Counter of the amount of times R2 subtracts into R1
-D_LOOP      not R3, R2          ; Negating R2 into R3
+            and R3, R3, #0      ; Keeps record if the quotient should be positive (0) or negative (1)
+            add R1, R1, #0
+            brzp SKIP           ; Checks if R1 (dividend) is negative or not
+            not R1, R1
+            add R1, R1, #1      ; Negating R1
+            add R3, R3, #1      ; Changes R3 to negative
+SKIP        add R2, R2, #0
+            brzp D_LOOP         ; Checks if R2 (divisor) is negative or not
+            not R2, R2
+            add R2, R2, #1      ; Negating R2
             add R3, R3, #1
-            add R1, R1, R3      ; Addition of R1 and Negation of R3
-            brn PUSH            ; If R1 is not negative yet, the loop repeats, otherwise puts the new Number into the Stack
+D_LOOP      not R5, R2          ; Negating R2 into R5 (R5 is a temp register here)
+            add R5, R5, #1
+            add R1, R1, R5      ; Addition of R1 and Negation of R5
+            brn D_DONE          ; If R1 is not negative yet, the loop repeats, otherwise make quotient the correct sign then push to stack
             add R0, R0, #1      ; Incrementing R1
             brnzp D_LOOP
-
+D_DONE      add R3, R3, #-1
+            brnp PUSH           ; If R3 was 0 or 2 originally (positive), then now it is -1 or 1 and will be pushed to stack
+            not R0, R0          ; Otherwise R0 will be negated
+            add R0, R0, #1
+            brnzp PUSH
+            
 POP2        ldr R2, R4, #0      ; Retrieving the Last Number in the Stack
             add R4, R4, #1      ; Incrementing the Stack
             ldr R1, R4, #0      ; Retrieving the Next Last Number in the Stack
